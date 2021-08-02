@@ -1,0 +1,7 @@
+{
+  "name": "provaIncluir",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

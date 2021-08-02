@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-row>
+        <ion-col>
+          <img alt="logo" height="46" src="assets/icon/logo_principal.png" />
+        </ion-col>
+        <ion-col>
+          <ion-row class="ion-justify-content-end"
+            ><ion-button
+              (click)="previousPage()"
+              fill="outline"
+              color="#6D2080"
+            >
+              <ion-icon name="return-up-back-outline"></ion-icon>&nbsp; Voltar </ion-button
+            >
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <ion-grid [fixed]="false" >
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="4"
+        ><div class="lista">
+          <ion-list>
+            <ion-item>
+              <ion-label>Filtrar por</ion-label>
+              <ion-select
+                [(ngModel)]="opcaoSelecionada"
+                [interfaceOptions]="customPopoverOptions"
+                interface="popover"
+              >
+                <ion-select-option value="region">Região</ion-select-option>
+                <ion-select-option value="capital">Capital</ion-select-option>
+                <ion-select-option value="lang">Língua</ion-select-option>
+                <ion-select-option value="name">País</ion-select-option>
+                <ion-select-option value="callingcode"
+                  >Codigo de Ligação</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div></ion-col
+      >
+
+      <ion-col size="12" size-sm="12" size-md="4"
+        ><div class="lista" *ngIf="opcaoSelecionada">
+          <ion-list>
+            <ion-list-header>
+              <ion-label> {{nomeiaLabel()}} </ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-input [(ngModel)]="filtroSelecionado"> </ion-input>
+            </ion-item>
+          </ion-list></div
+      ></ion-col>
+
+      <ion-col size="12" size-sm="12" size-md="4">
+        <div class="container" style="padding: 5%">
+          <ion-button (click)="carregaOpcoes()" class="botao"
+            >Pesquisar</ion-button
+          >
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="!mostraListaPaises" >
+      <ion-col size="12" size-sm="12" size-md="4">
+        <ion-row class="img-container ion-justify-content-center">
+          <img
+            class="bandeira"
+            src="assets/icon/brasil.png"
+          />
+        </ion-row>
+      </ion-col>
+      <ion-col size="12" size-sm="12" size-md="4">
+        <ion-row class="img-container ion-justify-content-center">
+          <img
+            class="bandeira"
+            src="assets/icon/alemanha.png"
+          />
+        </ion-row>
+      </ion-col>
+      <ion-col size="12" size-sm="12" size-md="4">
+        <ion-row class="img-container ion-justify-content-center">
+          <img
+            class="bandeira"
+            src="assets/icon/japao.png"
+          />
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="mostraListaPaises" class="ion-justify-content-center">
+      <ion-col *ngFor="let paises of resultado" size="12" size-sm="12" size-md="4">
+        <ion-row class="img-container ion-justify-content-center">
+          <img
+          (click)="redirecionaPaisSelecionado(paises.name)"
+            class="bandeira"
+            src={{paises.flag}}
+          />
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

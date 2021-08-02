@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-row>
+        <ion-col>
+          <img alt="logo" height="46" src="assets/icon/logo_principal.png" />
+        </ion-col>
+        <ion-col>
+          <ion-row class="ion-justify-content-end"
+            ><ion-button
+              (click)="previousPage()"
+              fill="outline"
+              color="#6D2080"
+            >
+              <ion-icon name="return-up-back-outline"></ion-icon>&nbsp; Voltar </ion-button
+            >
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ion-grid [fixed]="true">
+      <ion-row style="padding: 5%">
+        <ion-col size="12" size-sm="12" size-md="4">
+          <img class="bandeira" src="{{paisSelecionado.flag}}" />
+        </ion-col>
+        <ion-col size="12" size-sm="12" size-md="4">
+          <ion-row class="espaço"> Nome:{{paisSelecionado.name}} </ion-row>
+          <ion-row class="espaço">
+            Capital:{{paisSelecionado.capital}}
+          </ion-row>
+          <ion-row class="espaço"> Região:{{paisSelecionado.region}} </ion-row>
+          <ion-row class="espaço">
+            Sub-Região:{{paisSelecionado.subregion}}
+          </ion-row>
+          <ion-row class="espaço">
+            População:{{paisSelecionado.population}}
+          </ion-row>
+          <ion-row class="espaço">
+            Linguas:
+            <div *ngFor="let linguas of paisSelecionado.languages">
+              {{linguas.name}},
+            </div>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="padding: 5%"> Países Vizinhos: </ion-row>
+
+      <ion-row>
+        <ion-col
+          size="12"
+          size-sm="12"
+          size-md="4"
+          *ngFor="let paises of vizinhoSelecionado"
+        >
+          <img
+            class="bandeira"
+            (click)="nextpage(paises.name)"
+            src="{{paises.flag}}"
+          />
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
